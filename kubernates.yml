@@ -15,7 +15,7 @@ spec:
         app: jepbura-pf
     spec:
       containers:
-        - image: jepbura/fnt
+        - image: jepbura/pf
           name: jepbura-pf
           env:
           - name: REMOTE_HOST
