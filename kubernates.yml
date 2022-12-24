@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jepbura-pf
+  labels:
+    app: jepbura-pf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jepbura-pf
+  template:
+    metadata:
+      labels:
+        app: jepbura-pf
+    spec:
+      containers:
+        - image: jepbura/fnt
+          name: jepbura-pf
+          env:
+          - name: REMOTE_HOST
+            value: "IP or Host Address"
+          - name: REMOTE_PORT
+            value: "1080"
+          - name: LOCAL_PORT
+            value: "1080"
+          ports:
+            - containerPort: 1080
+          resources: 
+            limits:
+              cpu: 100m
+              ephemeral-storage: 100M
+              memory: 100M
+            requests:
+              cpu: 100m
+              ephemeral-storage: 100M
+              memory: 100M
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jepbura-pf
+spec:
+  selector:
+    app: jepbura-pf
+  ports:
+    - port: 1080
+      targetPort: 1080
+      name: jepbura-pf-1080
+  type: LoadBalancer
