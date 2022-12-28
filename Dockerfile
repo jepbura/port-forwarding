@@ -1,7 +1,6 @@
 FROM alpine:3.9
 
-MAINTAINER www.bura.dev
-LABEL This project is based on marcnuri/port-forward
+LABEL This project is based on marcnuri/port-forward <www.bura.dev>
 
 RUN apk add --update --no-cache socat \
 	&& rm -rf /var/cache/apk/
